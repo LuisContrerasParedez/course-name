@@ -1,0 +1,18 @@
+name: variables
+run-name: ¡Estoy aprendiendo a usar Variables!
+on:
+  push:
+    branches:
+      - aprendiendo-github-actions
+env: 
+  name: ${{ github.event_name }}
+  Mes: Julio
+jobs:
+  persona-mes:
+    runs-on: ubuntu-latest
+    env:
+      APELLIDO: "Paredez"
+    steps:
+      - run: echo "¡Hola, ${{ env.name }} ${{ env.APELLIDO }}! estamos en el mes de ${{ env.Mes }}"
+        env:
+          NOMBRE: "Locky"
