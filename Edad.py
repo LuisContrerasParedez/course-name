@@ -1,0 +1,1 @@
+print("La persona es mayor de edad")

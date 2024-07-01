@@ -1,0 +1,50 @@
+name: Expression 
+on:
+    workflow_dispatch:
+        inputs:
+          Sexo:
+            description: 'Sexo'
+            required: true
+            type: string
+            default: 'Masculino'
+          nombre:
+            description: 'Tu nombre'
+            required: true
+            type: string
+            default: 'Luis'
+          edad:
+            description: 'Tu edad'
+            required: true
+            type: number
+            default: 18
+jobs:
+  masculino:
+    if : ${{ github.event.inputs.Sexo == 'Masculino' }}
+    runs-on : ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Definir nombre
+        run: echo "USERNAME=${{ github.event.inputs.nombre }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: python SexoM.py
+  femenino:
+    if : ${{ github.event.inputs.Sexo == 'Femenino' }}
+    runs-on : ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Definir nombre
+        run: echo "USERNAME=${{ github.event.inputs.nombre }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: python SexoF.py
+  edad:
+    if : ${{ github.event.inputs.edad >= 18 }}
+    runs-on : ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Definir nombre
+        run: echo "USERNAME=${{ github.event.inputs.nombre }}" >> $GITHUB_ENV
+      - name: Correr script
+        run: python Edad.py
